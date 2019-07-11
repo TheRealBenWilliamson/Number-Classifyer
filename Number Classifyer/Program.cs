@@ -6,7 +6,7 @@ namespace Number_Classifyer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("This is a Git Test!");
+            
         }
     }
 }
