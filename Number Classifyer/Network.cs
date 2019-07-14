@@ -18,9 +18,18 @@ namespace Number_Classifyer
         protected Coordinate m_NetworkSize = new Coordinate();
         protected List<uint> m_Dimensions;
         protected string m_Name;
+        protected List<int> m_DataWhiteList;
+        private Random Rnd = new Random();
 
+        /*
+          IMPORTED NETWORK CONSTRUCTOR
+        */
+
+        //New Network constructor
         public Network(string p_Name, List<uint> p_Dimensions)
         {
+            //INSTANCIATE THE DATA WHITE LIST
+
             m_Name = p_Name;
             m_Dimensions = p_Dimensions;
 
@@ -40,6 +49,7 @@ namespace Number_Classifyer
             NetworkSize.Y = Largest;
 
             Coordinate Position = new Coordinate();
+            bool Invisible;
             
             for (int X = 0; X < NetworkSize.X; X++)
             {
@@ -48,16 +58,40 @@ namespace Number_Classifyer
                 {
                     Position.Y = (uint)Y;
 
+                    Invisible = false;
+                    //finding if the node is invisible
+                    if (Y <= Dimensions[(int)(Position.X)])
+                    {
+                        Invisible = true;
+                    }
+
                     //the node will generate its own connection weights on initialisation. it can do this as it doesn't actually form any connections, but gives weights to where they should be.
-                    Node GenNode = new Node(this, Position);
+                    Node GenNode = new Node(this, Position, Invisible);
                     m_NodeInfo[X, Y] = GenNode;
 
                 }
             }
 
             //EXPORT THE NETWORK FILE HERE
+            Console.WriteLine("CREATING FILE HERE       PRESS ENTER");
+            Console.ReadLine();
 
         }
+
+        public void Train()
+        {
+            //picks a random sample of data from the data white list
+            int DataIndex = Rnd.Next(0, m_DataWhiteList.Count);
+        }
+
+        public double Test()
+        {
+            Double SuccessRate = 0;
+            int Succeeded = 0;
+
+            return SuccessRate;
+        }
+
 
 
         public Node[,] NodeInfo

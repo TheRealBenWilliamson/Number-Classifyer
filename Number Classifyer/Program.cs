@@ -13,7 +13,7 @@ namespace Number_Classifyer
             //program asks the user what they want to do: train a network or create a new one
             while (true)
             {
-                Console.WriteLine("What would you like to do? \n1) Create a new network \n2) Train an existing network");
+                Console.WriteLine("What would you like to do? \n1) Create a new network \n2) Train an existing network \n3) Test an existing network");
                 string Input = Console.ReadLine();
                 if (Input == "1")
                 {
@@ -55,9 +55,31 @@ namespace Number_Classifyer
  
                 }
                 else if(Input == "2")
-                {                   
+                {
                     //Train an existing network
+                    Console.WriteLine("Which network would you like to train? CURRENTLY JUST PRESS ENTER");
+                    Console.ReadLine();
 
+
+                    //the network below is simply a place holder while i learn how to read CSV files. just call the new network 'Net'
+                    List<uint> MockDimensions = new List<uint>() { 2, 2, 2 };
+                    Network Net = new Network("Net", MockDimensions);
+                    /*
+                      FIND AND USE THE CORRECT NETWORK
+                    */
+
+
+                    Console.WriteLine("How many times would you like the program to train");
+                    int Times = Convert.ToInt32(Console.ReadLine());
+                    for (int Trained = 0; Trained <= Times; Trained++)
+                    {
+                        Net.Train();
+                    }
+
+                }
+                else if (Input == "3")
+                {
+                    //Test an existing network                   
                 }
                 else
                 {

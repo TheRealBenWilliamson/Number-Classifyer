@@ -11,12 +11,14 @@ namespace Number_Classifyer
         private Network m_Parent;
         private List<Double> m_Weights;
         private Coordinate m_Position;
+        private bool m_Invisible;
 
-        public Node(Network p_Parent, Coordinate p_Position)
+        public Node(Network p_Parent, Coordinate p_Position, bool p_Invisible)
         {
             List<Double> m_Weights = new List<Double>();
             m_Parent = p_Parent;
             m_Position = p_Position;
+            m_Invisible = p_Invisible;
 
             //Assigning a random weight to all Visible Node connections infront of this node           
             Random Rnd = new Random();
@@ -91,9 +93,20 @@ namespace Number_Classifyer
             {
                 m_Position = value;
             }
-        }      
+        }
 
-        
+        public bool Invisible
+        {
+            get
+            {
+                return m_Invisible;
+            }
+            set
+            {
+                m_Invisible = value;
+            }
+        }
+
 
 
     }
